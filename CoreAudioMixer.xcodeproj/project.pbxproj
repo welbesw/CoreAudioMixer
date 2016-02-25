@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BECD89031C7E353700AD9D96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD89021C7E353700AD9D96 /* AppDelegate.swift */; };
+		BECD89051C7E353700AD9D96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD89041C7E353700AD9D96 /* ViewController.swift */; };
+		BECD89081C7E353700AD9D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECD89061C7E353700AD9D96 /* Main.storyboard */; };
+		BECD890A1C7E353700AD9D96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BECD89091C7E353700AD9D96 /* Assets.xcassets */; };
+		BECD890D1C7E353700AD9D96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECD890B1C7E353700AD9D96 /* LaunchScreen.storyboard */; };
+		BECD89181C7E35DE00AD9D96 /* CoreAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BECD89171C7E35DE00AD9D96 /* CoreAudioManager.m */; };
+		BECD891A1C7E4AAF00AD9D96 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECD89191C7E4AAF00AD9D96 /* AudioToolbox.framework */; };
+		BECD891D1C7E4B4000AD9D96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */; };
+		BECD89211C7E4CD700AD9D96 /* DrumsMonoSTP.aif in Resources */ = {isa = PBXBuildFile; fileRef = BECD891F1C7E4CD700AD9D96 /* DrumsMonoSTP.aif */; };
+		BECD89221C7E4CD700AD9D96 /* GuitarMonoSTP.aif in Resources */ = {isa = PBXBuildFile; fileRef = BECD89201C7E4CD700AD9D96 /* GuitarMonoSTP.aif */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BECD88FF1C7E353700AD9D96 /* CoreAudioMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreAudioMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BECD89021C7E353700AD9D96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BECD89041C7E353700AD9D96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BECD89071C7E353700AD9D96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BECD89091C7E353700AD9D96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BECD890C1C7E353700AD9D96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BECD890E1C7E353700AD9D96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BECD89151C7E35DD00AD9D96 /* CoreAudioMixer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreAudioMixer-Bridging-Header.h"; sourceTree = "<group>"; };
+		BECD89161C7E35DE00AD9D96 /* CoreAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreAudioManager.h; sourceTree = "<group>"; };
+		BECD89171C7E35DE00AD9D96 /* CoreAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreAudioManager.m; sourceTree = "<group>"; };
+		BECD89191C7E4AAF00AD9D96 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BECD891F1C7E4CD700AD9D96 /* DrumsMonoSTP.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = DrumsMonoSTP.aif; sourceTree = "<group>"; };
+		BECD89201C7E4CD700AD9D96 /* GuitarMonoSTP.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = GuitarMonoSTP.aif; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BECD88FC1C7E353700AD9D96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BECD891D1C7E4B4000AD9D96 /* AVFoundation.framework in Frameworks */,
+				BECD891A1C7E4AAF00AD9D96 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BECD88F61C7E353700AD9D96 = {
+			isa = PBXGroup;
+			children = (
+				BECD89011C7E353700AD9D96 /* CoreAudioMixer */,
+				BECD891B1C7E4AB700AD9D96 /* Frameworks */,
+				BECD89001C7E353700AD9D96 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BECD89001C7E353700AD9D96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BECD88FF1C7E353700AD9D96 /* CoreAudioMixer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BECD89011C7E353700AD9D96 /* CoreAudioMixer */ = {
+			isa = PBXGroup;
+			children = (
+				BECD89141C7E359300AD9D96 /* CoreAudioInterface */,
+				BECD89021C7E353700AD9D96 /* AppDelegate.swift */,
+				BECD89041C7E353700AD9D96 /* ViewController.swift */,
+				BECD89061C7E353700AD9D96 /* Main.storyboard */,
+				BECD89091C7E353700AD9D96 /* Assets.xcassets */,
+				BECD890B1C7E353700AD9D96 /* LaunchScreen.storyboard */,
+				BECD890E1C7E353700AD9D96 /* Info.plist */,
+				BECD891E1C7E4CD700AD9D96 /* Audio */,
+			);
+			path = CoreAudioMixer;
+			sourceTree = "<group>";
+		};
+		BECD89141C7E359300AD9D96 /* CoreAudioInterface */ = {
+			isa = PBXGroup;
+			children = (
+				BECD89161C7E35DE00AD9D96 /* CoreAudioManager.h */,
+				BECD89171C7E35DE00AD9D96 /* CoreAudioManager.m */,
+				BECD89151C7E35DD00AD9D96 /* CoreAudioMixer-Bridging-Header.h */,
+			);
+			path = CoreAudioInterface;
+			sourceTree = "<group>";
+		};
+		BECD891B1C7E4AB700AD9D96 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */,
+				BECD89191C7E4AAF00AD9D96 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BECD891E1C7E4CD700AD9D96 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				BECD891F1C7E4CD700AD9D96 /* DrumsMonoSTP.aif */,
+				BECD89201C7E4CD700AD9D96 /* GuitarMonoSTP.aif */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BECD88FE1C7E353700AD9D96 /* CoreAudioMixer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BECD89111C7E353700AD9D96 /* Build configuration list for PBXNativeTarget "CoreAudioMixer" */;
+			buildPhases = (
+				BECD88FB1C7E353700AD9D96 /* Sources */,
+				BECD88FC1C7E353700AD9D96 /* Frameworks */,
+				BECD88FD1C7E353700AD9D96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreAudioMixer;
+			productName = CoreAudioMixer;
+			productReference = BECD88FF1C7E353700AD9D96 /* CoreAudioMixer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BECD88F71C7E353700AD9D96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "William Welbes";
+				TargetAttributes = {
+					BECD88FE1C7E353700AD9D96 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = BECD88FA1C7E353700AD9D96 /* Build configuration list for PBXProject "CoreAudioMixer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BECD88F61C7E353700AD9D96;
+			productRefGroup = BECD89001C7E353700AD9D96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BECD88FE1C7E353700AD9D96 /* CoreAudioMixer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BECD88FD1C7E353700AD9D96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BECD890D1C7E353700AD9D96 /* LaunchScreen.storyboard in Resources */,
+				BECD89211C7E4CD700AD9D96 /* DrumsMonoSTP.aif in Resources */,
+				BECD890A1C7E353700AD9D96 /* Assets.xcassets in Resources */,
+				BECD89081C7E353700AD9D96 /* Main.storyboard in Resources */,
+				BECD89221C7E4CD700AD9D96 /* GuitarMonoSTP.aif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BECD88FB1C7E353700AD9D96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BECD89051C7E353700AD9D96 /* ViewController.swift in Sources */,
+				BECD89181C7E35DE00AD9D96 /* CoreAudioManager.m in Sources */,
+				BECD89031C7E353700AD9D96 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BECD89061C7E353700AD9D96 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BECD89071C7E353700AD9D96 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BECD890B1C7E353700AD9D96 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BECD890C1C7E353700AD9D96 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BECD890F1C7E353700AD9D96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BECD89101C7E353700AD9D96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BECD89121C7E353700AD9D96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = CoreAudioMixer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamwelbes.CoreAudioMixer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreAudioMixer/CoreAudioInterface/CoreAudioMixer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BECD89131C7E353700AD9D96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = CoreAudioMixer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamwelbes.CoreAudioMixer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreAudioMixer/CoreAudioInterface/CoreAudioMixer-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BECD88FA1C7E353700AD9D96 /* Build configuration list for PBXProject "CoreAudioMixer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BECD890F1C7E353700AD9D96 /* Debug */,
+				BECD89101C7E353700AD9D96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BECD89111C7E353700AD9D96 /* Build configuration list for PBXNativeTarget "CoreAudioMixer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BECD89121C7E353700AD9D96 /* Debug */,
+				BECD89131C7E353700AD9D96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BECD88F71C7E353700AD9D96 /* Project object */;
+}

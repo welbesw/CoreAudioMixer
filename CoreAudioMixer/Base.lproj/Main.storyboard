@@ -67,7 +67,7 @@
                                 </connections>
                             </slider>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pL4-UH-R2u" firstAttribute="top" secondItem="zOF-3n-Hz3" secondAttribute="bottom" constant="8" id="3NF-vN-Fga"/>
                             <constraint firstItem="Qte-I7-5Yn" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3YF-dz-sgE"/>

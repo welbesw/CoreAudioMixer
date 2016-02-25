@@ -66,6 +66,9 @@ typedef struct {
                                                     name:AVAudioSessionRouteChangeNotification
                                                   object:[AVAudioSession sharedInstance]];
     
+    //Dispose of the allocated graph
+    DisposeAUGraph(mGraph);
+    
     //Release allocated memory for sound buffer member
     free(mSoundBuffer[0].data);
     free(mSoundBuffer[1].data);

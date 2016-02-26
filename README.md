@@ -1,14 +1,18 @@
 # CoreAudioMixer
-An investigation into CoreAudio.
 
-I've implemented this app as part of my investigation into the CoreAudio frameworks on iOS.  It uses two different audio files, one with drums and one with guitar and mixes them together.   I've implemented CoreAudio in two different ways, first with AudioToolbox using AUGraph and secondly with AVAudioEngine, Apple's newer Audio SDK released with iOS 8.  There is a segmented control that allows the user to select which implementation to play.
+##An Investigation into CoreAudio##
 
+I've implemented this app as part of my investigation into the CoreAudio frameworks on iOS.  It uses two different audio files, one with drums and one with guitar and mixes them together.   
+
+There are two different implementations of interfacing with CoreAudio. First with AudioToolbox using AUGraph and second with [AVAudioEngine](https://developer.apple.com/library/prerelease/ios/documentation/AVFoundation/Reference/AVAudioEngine_Class/index.html), Apple's newer audio API released with iOS 8.  There is a segmented control that allows the user to select which implementation to interact with.
+
+For more about CoreAudio, visit the iOS [CoreAudio Apple Developer Library](https://developer.apple.com/library/ios/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html).
 
 ##User Interface##
 
 ![Mixer Screen Shot](/images/mixer-screen-shot-1.png)
 
-The interface for the app is simple.  The audio files and graph are loaded when the app is started or when the user selects a different implementation via changing the segmented control option.  The user can playback the audio by pressing "Play" and then adjust the volume on the individual tracks via the UISwitch sliders.  Playback can be stopped and started via the "Play/Stop" button.  The output volume level is shown as a percentage to the user.  The guitar is output to the left channel and the drums are output to the right channel.
+The interface for the app is simple.  Select an implementation type via the segmented control at the top.  Press "Play" and then adjust the volume on the individual tracks via the UISwitch sliders.  Playback can be stopped and started via the "Play/Stop" button.  The output volume level is shown as a percentage.  The guitar is output to the left channel and the drums are output to the right channel.
 
 ##Source##
 

@@ -12,11 +12,14 @@ For more about CoreAudio, visit the iOS [CoreAudio Apple Developer Library](http
 
 ![Mixer Screen Shot](/images/mixer-screen-shot-1.png)
 
-The interface for the app is simple.  Select an implementation type via the segmented control at the top.  Press "Play" and then adjust the volume on the individual tracks via the UISwitch sliders.  Playback can be stopped and started via the "Play/Stop" button.  The output volume level is shown as a percentage.  The guitar is output to the left channel and the drums are output to the right channel.
+The interface for the app is simple.  Select an implementation type via the segmented control at the top.  Press "Play" and then adjust the volume on the individual tracks via the sliders.  Playback can be stopped and started via the "Play/Stop" button.  The output volume level is shown as a percentage.  The guitar is output to the left channel and the drums are output to the right channel.
 
 ##Source##
 
-The implementation of CoreAudio calls is contained in two separate manager classes: CoreAudioManager and AudioEngineManager.  CoreAudioManager is an implementation using the AudioToolbox API directly and at a lower level than the AudioEngineManager.  The AudioEngineManager implements Apple's newer AVAudioEngine API.
+The implementation of CoreAudio calls is contained in two separate manager classes: CoreAudioManager and AudioEngineManager.  
+
+* CoreAudioManager : AudioToolbox API (lower level API)
+* AudioEngineManager : AVAudioEngine implementation
 
 CoreAudioManager contains the CoreAudio calls in a simple Objective-C class that encapsulates the C and Objective-C calls into the CoreAudio frameworks.  This allows the UI elements to simply call into the Objective-C class as needed.  I have implemented the UIViewController and other UI related code in Swift, but Objective-C could have just as easily been used for these classes.
 

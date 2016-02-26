@@ -1,23 +1,20 @@
 //
-//  CoreAudioManager.h
+//  AudioEngineManager.h
 //  CoreAudioMixer
 //
-//  Created by William Welbes on 2/24/16.
+//  Created by William Welbes on 2/25/16.
 //  Copyright © 2016 William Welbes. All rights reserved.
 //
+//  Implement CoreAudio functionality using the AVAudioEngine introduced in iOS8
+
 
 #import <Foundation/Foundation.h>
 #import "AudioManager.h"
 
-extern const Float64 kSampleRate;
+@interface AudioEngineManager : NSObject <AudioManager>
 
-@interface CoreAudioManager : NSObject <AudioManager>
-
--(void)loadAudioFiles;
--(void)initializeAUGraph;
-
+-(void)loadEngine;
 -(void)startPlaying;
--(void)stopPlaying;
 
 -(void)setGuitarInputVolume:(Float32)value;
 -(void)setDrumInputVolume:(Float32)value;

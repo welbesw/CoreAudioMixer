@@ -18,15 +18,20 @@ class ViewController: UIViewController {
     
     @IBOutlet var playButton:UIButton!
     
+    @IBOutlet var segmentedControl:UISegmentedControl!
+    
     var drumLevel:Float = 1.0
     var guitarLevel:Float = 1.0
+    
+    var audioManager:AudioManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Load the core audio manager and initialize the graph
         
-        CoreAudioManager.sharedInstance().loadAudioFiles()
-        CoreAudioManager.sharedInstance().initializeAUGraph()
+        //Start with the CoreAudioManager as the default
+        audioManager = CoreAudioManager()
+        audioManager.load()
         
         drumSlider.value = drumLevel
         guitarSlider.value = guitarLevel
@@ -37,15 +42,34 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func didChangeSegmentedControlValue(sender:UISegmentedControl?) {
+        if sender == segmentedControl {
+            //Stop any audio before changing managers
+            audioManager.stopPlaying()
+            updatePlayButtonText()
+            
+            let index = segmentedControl.selectedSegmentIndex
+            if index == 0 {
+                audioManager = CoreAudioManager()
+                audioManager.load()
+            } else if (index == 1) {
+                audioManager = AudioEngineManager()
+                audioManager.load()
+            } else {
+                print("Unrecognized selected segment index.")
+            }
+            audioManager.setDrumInputVolume(drumLevel)
+            audioManager.setGuitarInputVolume(guitarLevel)
+        }
+    }
 
     @IBAction func didTapPlayButton(sender:AnyObject?) {
         
-        let manager = CoreAudioManager.sharedInstance()
-        
-        if(manager.isPlaying) {
-            manager.stopPlaying()
+        if(audioManager.isPlaying()) {
+            audioManager.stopPlaying()
         } else {
-            manager.startPlaying()
+            audioManager.startPlaying()
         }
         
         updatePlayButtonText()
@@ -54,10 +78,10 @@ class ViewController: UIViewController {
     @IBAction func didChangeSliderValue(sender:UISlider?) {
         if sender == drumSlider {
             drumLevel = drumSlider.value
-            CoreAudioManager.sharedInstance().setDrumInputVolume(drumLevel)
+            audioManager.setDrumInputVolume(drumLevel)
         } else if sender == guitarSlider {
             guitarLevel = guitarSlider.value
-            CoreAudioManager.sharedInstance().setGuitarInputVolume(guitarLevel)
+            audioManager.setGuitarInputVolume(guitarLevel)
         }
         
         updateSliderLabels()
@@ -69,7 +93,7 @@ class ViewController: UIViewController {
     }
     
     func updatePlayButtonText() {
-        let buttonText = CoreAudioManager.sharedInstance().isPlaying ? "Stop" : "Start"
+        let buttonText = audioManager.isPlaying() ? "Stop" : "Play"
         UIView.performWithoutAnimation { () -> Void in
             self.playButton.setTitle(buttonText, forState: UIControlState.Normal)
             self.playButton.layoutIfNeeded()

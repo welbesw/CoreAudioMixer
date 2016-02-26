@@ -30,26 +30,22 @@ typedef struct {
     AUGraph mGraph;
     AudioUnit mMixer;
     AudioUnit mOutput;
+    
+    BOOL mIsPlaying;
 }
 @end
 
 @implementation CoreAudioManager
 
-+(CoreAudioManager*)sharedInstance
-{
-    static dispatch_once_t pred = 0;
-    __strong static CoreAudioManager * _sharedManager = nil;
-    dispatch_once(&pred, ^{
-        _sharedManager = [[self alloc] init];
-    });
-    return _sharedManager;
+-(BOOL)isPlaying {
+    return mIsPlaying;
 }
 
 -(id)init {
     
     self = [super init];
     if (self != nil) {
-        self.isPlaying = NO;
+        mIsPlaying = NO;
     }
     
     return self;
@@ -75,6 +71,12 @@ typedef struct {
     
     // clear the mSoundBuffer struct
     memset(&mSoundBuffer, 0, sizeof(mSoundBuffer));
+}
+
+-(void)load {
+    
+    [self loadAudioFiles];
+    [self initializeAUGraph];
 }
 
 -(void)loadAudioFiles {
@@ -179,79 +181,6 @@ typedef struct {
         CFRelease(fileUrlRef);
         
     }
-}
-
--(void)setupAudioSession {
-    
-    AVAudioSession * sessionInstance = [AVAudioSession sharedInstance];
-    
-    NSError * error = nil;
-    
-    [sessionInstance setCategory:AVAudioSessionCategoryPlayback error:&error];
-    if(error != nil) {
-        NSLog(@"Error setting audio category: %@", error.localizedDescription);
-    }
-    
-    NSTimeInterval bufferDuration = .005;
-    [sessionInstance setPreferredIOBufferDuration:bufferDuration error:&error];
-    if(error != nil) {
-        NSLog(@"Error settting Preferred Buffer Duration: %@", error.localizedDescription);
-    }
-    
-    [sessionInstance setPreferredSampleRate:kSampleRate error:&error];
-    if (error != nil) {
-        NSLog(@"Error setting preferred sample rate: %@", error.localizedDescription);
-    }
-    
-    
-    //Add self as the interruption handler
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleInterruption:) name:AVAudioSessionInterruptionNotification object:sessionInstance];
-    
-    //Add seld as the route change handler
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRouteChange:) name:AVAudioSessionRouteChangeNotification object:sessionInstance];
-    
-    
-    //Set the session to active
-    [sessionInstance setActive:YES error:&error];
-    if(error != nil) {
-        NSLog(@"Error setting audio session to active: %@", error.localizedDescription);
-    } else {
-        NSLog(@"AVAudioSession set to active.");
-    }
-}
-
--(void)handleInterruption:(NSNotification*)notification {
-    
-    //Get the type of interruption
-    UInt8 interruptionType = [[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] intValue];
-    
-    NSLog(@"AVAudioSession interrupted: %@", interruptionType == AVAudioSessionInterruptionTypeBegan ? @"Begin Interruption" : @"End Interruption");
-    
-    if (interruptionType == AVAudioSessionInterruptionTypeBegan) {
-        //stop for the interruption
-        [self stopPlaying];
-        
-    } else if (interruptionType == AVAudioSessionInterruptionTypeEnded) {
-        NSError * error = nil;
-        
-        //Activate the session
-        [[AVAudioSession sharedInstance] setActive:YES error:&error];
-        if (error != nil) {
-            NSLog(@"AVAudioSession setActive failed: %@", error.localizedDescription);
-        }
-    }
-}
-
--(void)handleRouteChange:(NSNotification*)notification {
-    
-    //Get the type of route change
-    UInt8 reasonValue = [[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] intValue];
-    
-     NSLog(@"handleRouteChange: reasonValue: %d", reasonValue);
-    
-    AVAudioSessionRouteDescription * routeDescription = [notification.userInfo valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
-    
-    NSLog(@"handleRouteChange: new route: %@", routeDescription);
 }
 
 -(void)initializeAUGraph
@@ -435,7 +364,7 @@ static OSStatus renderAudioInput(void *inRefCon, AudioUnitRenderActionFlags *act
         return;
     }
     
-    self.isPlaying = YES;
+    mIsPlaying = YES;
 }
 
 -(void)stopPlaying {
@@ -455,7 +384,7 @@ static OSStatus renderAudioInput(void *inRefCon, AudioUnitRenderActionFlags *act
             NSLog(@"AUGraphStop failed: %ld", (long)result);
             return;
         }
-        self.isPlaying = NO;
+        mIsPlaying = NO;
     } else {
         NSLog(@"AUGraphIsRunning reported not running.");
     }

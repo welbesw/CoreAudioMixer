@@ -66,6 +66,20 @@
                                     <action selector="didChangeSliderValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="3Ud-RK-bZc"/>
                                 </connections>
                             </slider>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mIK-i6-1ZY">
+                                <rect key="frame" x="178" y="28" width="244" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="MJu-Sy-Gkq"/>
+                                    <constraint firstAttribute="width" constant="244" id="YGt-Wq-2S9"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="AUGraph"/>
+                                    <segment title="AVAudioEngine"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeSegmentedControlValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="xOn-yZ-7ba"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -73,7 +87,9 @@
                             <constraint firstItem="Qte-I7-5Yn" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3YF-dz-sgE"/>
                             <constraint firstItem="IKI-Xe-R8h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="68" id="9C2-z9-WMk"/>
                             <constraint firstItem="XhJ-db-nWF" firstAttribute="top" secondItem="Qte-I7-5Yn" secondAttribute="bottom" constant="8" id="AVH-Me-QWE"/>
+                            <constraint firstItem="mIK-i6-1ZY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="BYE-ts-a1N"/>
                             <constraint firstItem="Qte-I7-5Yn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ca7-6l-m8L"/>
+                            <constraint firstItem="mIK-i6-1ZY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JmY-yY-sTK"/>
                             <constraint firstItem="pL4-UH-R2u" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="K0l-vV-dPB"/>
                             <constraint firstItem="XhJ-db-nWF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="LSt-Xb-lPJ"/>
                             <constraint firstItem="IKI-Xe-R8h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OMG-nk-Voi"/>
@@ -97,6 +113,7 @@
                         <outlet property="guitarLabel" destination="Qte-I7-5Yn" id="8D0-OC-0hj"/>
                         <outlet property="guitarSlider" destination="XhJ-db-nWF" id="1VW-01-G2j"/>
                         <outlet property="playButton" destination="IKI-Xe-R8h" id="mHB-Lg-3b0"/>
+                        <outlet property="segmentedControl" destination="mIK-i6-1ZY" id="ioe-Wy-9Uh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

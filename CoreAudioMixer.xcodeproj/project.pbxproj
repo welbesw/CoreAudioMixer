@@ -17,6 +17,8 @@
 		BECD891D1C7E4B4000AD9D96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */; };
 		BECD89211C7E4CD700AD9D96 /* DrumsMonoSTP.aif in Resources */ = {isa = PBXBuildFile; fileRef = BECD891F1C7E4CD700AD9D96 /* DrumsMonoSTP.aif */; };
 		BECD89221C7E4CD700AD9D96 /* GuitarMonoSTP.aif in Resources */ = {isa = PBXBuildFile; fileRef = BECD89201C7E4CD700AD9D96 /* GuitarMonoSTP.aif */; };
+		BECD89251C7FB89A00AD9D96 /* AudioEngineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BECD89241C7FB89A00AD9D96 /* AudioEngineManager.m */; };
+		BECD892B1C80C5B700AD9D96 /* AudioSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BECD892A1C80C5B700AD9D96 /* AudioSessionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,11 @@
 		BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BECD891F1C7E4CD700AD9D96 /* DrumsMonoSTP.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = DrumsMonoSTP.aif; sourceTree = "<group>"; };
 		BECD89201C7E4CD700AD9D96 /* GuitarMonoSTP.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = GuitarMonoSTP.aif; sourceTree = "<group>"; };
+		BECD89231C7FB89A00AD9D96 /* AudioEngineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngineManager.h; sourceTree = "<group>"; };
+		BECD89241C7FB89A00AD9D96 /* AudioEngineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngineManager.m; sourceTree = "<group>"; };
+		BECD89261C7FC49800AD9D96 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		BECD89291C80C5B700AD9D96 /* AudioSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSessionManager.h; sourceTree = "<group>"; };
+		BECD892A1C80C5B700AD9D96 /* AudioSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSessionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +91,13 @@
 		BECD89141C7E359300AD9D96 /* CoreAudioInterface */ = {
 			isa = PBXGroup;
 			children = (
+				BECD89291C80C5B700AD9D96 /* AudioSessionManager.h */,
+				BECD892A1C80C5B700AD9D96 /* AudioSessionManager.m */,
+				BECD89261C7FC49800AD9D96 /* AudioManager.h */,
 				BECD89161C7E35DE00AD9D96 /* CoreAudioManager.h */,
 				BECD89171C7E35DE00AD9D96 /* CoreAudioManager.m */,
+				BECD89231C7FB89A00AD9D96 /* AudioEngineManager.h */,
+				BECD89241C7FB89A00AD9D96 /* AudioEngineManager.m */,
 				BECD89151C7E35DD00AD9D96 /* CoreAudioMixer-Bridging-Header.h */,
 			);
 			path = CoreAudioInterface;
@@ -184,6 +196,8 @@
 			files = (
 				BECD89051C7E353700AD9D96 /* ViewController.swift in Sources */,
 				BECD89181C7E35DE00AD9D96 /* CoreAudioManager.m in Sources */,
+				BECD892B1C80C5B700AD9D96 /* AudioSessionManager.m in Sources */,
+				BECD89251C7FB89A00AD9D96 /* AudioEngineManager.m in Sources */,
 				BECD89031C7E353700AD9D96 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +353,7 @@
 				BECD89131C7E353700AD9D96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

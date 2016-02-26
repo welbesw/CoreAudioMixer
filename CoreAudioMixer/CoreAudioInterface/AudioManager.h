@@ -1,23 +1,21 @@
 //
-//  CoreAudioManager.h
+//  AudioManager.h
 //  CoreAudioMixer
 //
-//  Created by William Welbes on 2/24/16.
+//  Created by William Welbes on 2/25/16.
 //  Copyright © 2016 William Welbes. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "AudioManager.h"
 
-extern const Float64 kSampleRate;
+@protocol AudioManager <NSObject>
 
-@interface CoreAudioManager : NSObject <AudioManager>
-
--(void)loadAudioFiles;
--(void)initializeAUGraph;
+-(void)load;
 
 -(void)startPlaying;
 -(void)stopPlaying;
+
+-(BOOL)isPlaying;
 
 -(void)setGuitarInputVolume:(Float32)value;
 -(void)setDrumInputVolume:(Float32)value;

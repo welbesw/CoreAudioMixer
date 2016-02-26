@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        //Setup the CoreAudioManager CoreAudio session
-        CoreAudioManager.sharedInstance().setupAudioSession()
+        //Setup the audio session before attempting to setup the other managers
+        AudioSessionManager.sharedInstance().setupAudioSession()
         
         return true
     }

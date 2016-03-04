@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         guitarSlider.value = guitarLevel
         updateSliderLabels()
         
-        timer = NSTimer(timeInterval: 0.1, target: self, selector: "timerTick:", userInfo: nil, repeats: true)
+        timer = NSTimer(timeInterval: 0.01, target: self, selector: "timerTick:", userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
 

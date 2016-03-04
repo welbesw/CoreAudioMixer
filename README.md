@@ -14,7 +14,7 @@ For more about CoreAudio, visit the iOS [CoreAudio Apple Developer Library](http
 
 The interface for the app is simple.  Select an implementation type via the segmented control at the top.  Press "Play" and then adjust the volume on the individual tracks via the sliders.  Playback can be stopped and started via the "Play/Stop" button.  The output volume level is shown as a percentage.  The guitar is output to the left channel and the drums are output to the right channel.
 
-I've also added a frequency spectrum view into the interface that shows the frequency information in real time for the Guitar track as it plays.  This view simply uses UIViews as columns to represent the data.  For a more robust view an OpenGL view could be explored in the future.  The FFT is only performed in the CoreAudioManager that implements the AUGraph, so it is not displayed when the CoreAudioEngine implementation is selected in the UI.
+I've also added a frequency spectrum view into the interface that shows the frequency information in real time for the Guitar track as it plays.  This view simply uses UIViews as columns to represent the data.  For a more robust view an OpenGL view could be explored in the future.  The FFT is only performed in the CoreAudioManager that implements the AUGraph, so it is not displayed when the AVAudioEngine implementation is selected in the UI.
 
 ##Source##
 

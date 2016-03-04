@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE782B0A1C86415B00CCF744 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE782B091C86415B00CCF744 /* Accelerate.framework */; };
+		BEBE63C51C88EBE900AF3F69 /* FrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE63C41C88EBE900AF3F69 /* FrequencyView.swift */; };
 		BECD89031C7E353700AD9D96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD89021C7E353700AD9D96 /* AppDelegate.swift */; };
 		BECD89051C7E353700AD9D96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD89041C7E353700AD9D96 /* ViewController.swift */; };
 		BECD89081C7E353700AD9D96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BECD89061C7E353700AD9D96 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE782B091C86415B00CCF744 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		BEBE63C41C88EBE900AF3F69 /* FrequencyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyView.swift; sourceTree = "<group>"; };
 		BECD88FF1C7E353700AD9D96 /* CoreAudioMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreAudioMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECD89021C7E353700AD9D96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BECD89041C7E353700AD9D96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE782B0A1C86415B00CCF744 /* Accelerate.framework in Frameworks */,
 				BECD891D1C7E4B4000AD9D96 /* AVFoundation.framework in Frameworks */,
 				BECD891A1C7E4AAF00AD9D96 /* AudioToolbox.framework in Frameworks */,
 			);
@@ -79,6 +84,7 @@
 				BECD89141C7E359300AD9D96 /* CoreAudioInterface */,
 				BECD89021C7E353700AD9D96 /* AppDelegate.swift */,
 				BECD89041C7E353700AD9D96 /* ViewController.swift */,
+				BEBE63C41C88EBE900AF3F69 /* FrequencyView.swift */,
 				BECD89061C7E353700AD9D96 /* Main.storyboard */,
 				BECD89091C7E353700AD9D96 /* Assets.xcassets */,
 				BECD890B1C7E353700AD9D96 /* LaunchScreen.storyboard */,
@@ -106,6 +112,7 @@
 		BECD891B1C7E4AB700AD9D96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE782B091C86415B00CCF744 /* Accelerate.framework */,
 				BECD891C1C7E4B4000AD9D96 /* AVFoundation.framework */,
 				BECD89191C7E4AAF00AD9D96 /* AudioToolbox.framework */,
 			);
@@ -197,6 +204,7 @@
 				BECD89051C7E353700AD9D96 /* ViewController.swift in Sources */,
 				BECD89181C7E35DE00AD9D96 /* CoreAudioManager.m in Sources */,
 				BECD892B1C80C5B700AD9D96 /* AudioSessionManager.m in Sources */,
+				BEBE63C51C88EBE900AF3F69 /* FrequencyView.swift in Sources */,
 				BECD89251C7FB89A00AD9D96 /* AudioEngineManager.m in Sources */,
 				BECD89031C7E353700AD9D96 /* AppDelegate.swift in Sources */,
 			);

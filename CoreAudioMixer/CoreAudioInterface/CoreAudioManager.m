@@ -11,8 +11,10 @@
 #import <AVFoundation/AVAudioFormat.h>
 #import <AVFoundation/AVAudioSession.h>
 #import <AudioUnit/AudioUnit.h>
+#include <Accelerate/Accelerate.h>  //Include the Accelerate framework to perform FFT
 
 const Float64 kSampleRate = 44100.0;
+const UInt32 frequencyDataLength = 256;
 
 //Create a struct to store the sound buffer data from sound files loaded
 
@@ -21,6 +23,7 @@ typedef struct {
     Float32 *data;
     UInt32 numberOfFrames;
     UInt32 sampleNumber;
+    Float32 *frequencyData;
 } SoundBuffer, *SoundBufferPtr;
 
 @interface CoreAudioManager() {
@@ -33,6 +36,7 @@ typedef struct {
     
     BOOL mIsPlaying;
 }
+
 @end
 
 @implementation CoreAudioManager
@@ -68,6 +72,8 @@ typedef struct {
     //Release allocated memory for sound buffer member
     free(mSoundBuffer[0].data);
     free(mSoundBuffer[1].data);
+    free(mSoundBuffer[0].frequencyData);
+    free(mSoundBuffer[1].frequencyData);
     
     // clear the mSoundBuffer struct
     memset(&mSoundBuffer, 0, sizeof(mSoundBuffer));
@@ -154,6 +160,8 @@ typedef struct {
         //Allocate memory for a buffer size based on the number of samples
         mSoundBuffer[i].data = (Float32 *)calloc(samples, sizeof(Float32));
         mSoundBuffer[i].sampleNumber = 0;
+        
+        mSoundBuffer[i].frequencyData = (Float32 *)calloc(frequencyDataLength, sizeof(Float32));    //TODO: Dynamic size
         
         //Create an AudioBufferList to read into
         AudioBufferList bufferList;
@@ -313,48 +321,6 @@ typedef struct {
     }
 }
 
-//A static audio render method callback that will be used by the AURenderCallback from the AUGraph
-static OSStatus renderAudioInput(void *inRefCon, AudioUnitRenderActionFlags *actionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberOfFrames, AudioBufferList *ioData)
-{
-    SoundBufferPtr soundBuffer = (SoundBufferPtr)inRefCon;
-    
-    //Get the frame to start at and total number of samples
-    UInt32 sample = soundBuffer[inBusNumber].sampleNumber;
-    UInt32 bufferTotalSamples = soundBuffer[inBusNumber].numberOfFrames;
-    
-    //Get a reference to the input data buffer
-    Float32 *inputData = soundBuffer[inBusNumber].data; // audio data buffer
-    
-    //Get references to the channel buffers
-    Float32 *outLeft = (Float32 *)ioData->mBuffers[0].mData; // output audio buffer for Left channel
-    Float32 *outRight = (Float32 *)ioData->mBuffers[1].mData; // output audio buffer for Right channel
-    
-    //Loop thru the number of frames and set the output data from the input data.
-    //Use the left channel for bus 0 (guitar) and right channel for bus 1 (drums) to distiguish for example
-    for (UInt32 i = 0; i < inNumberOfFrames; ++i) {
-        
-        if (inBusNumber == 0) {
-            outLeft[i] = inputData[sample++];
-            outRight[i] = 0;
-        } else {    //inBusNumber == 1
-            outLeft[i] = 0;
-            outRight[i] = inputData[sample++];
-        }
-        
-        //If the sample is beyond the total number of samples in the loop, start over at the beginning
-        if (sample > bufferTotalSamples) {
-            // start over from the beginning of the data, our audio simply loops
-            sample = 0;
-            NSLog(@"Starting over at frame 0 for bus %d", (int)inBusNumber);
-        }
-    }
-    
-    //Set the sample number in the sound buffer struct so we know which frame playback is on
-    soundBuffer[inBusNumber].sampleNumber = sample;
-    
-    return noErr;
-}
-
 -(void)startPlaying {
     NSLog(@"startPlaying");
     
@@ -404,6 +370,96 @@ static OSStatus renderAudioInput(void *inRefCon, AudioUnitRenderActionFlags *act
 
 -(void)setDrumInputVolume:(Float32)value {
     [self setVolumeForInput:1 value:value];
+}
+
+-(Float32*)guitarFrequencyDataOfLength:(UInt32*)size {
+    *size = frequencyDataLength;
+    return mSoundBuffer[0].frequencyData;
+}
+
+-(Float32*)drumsFrequencyDataOfLength:(UInt32*)size {
+    *size = frequencyDataLength;
+    return mSoundBuffer[1].frequencyData;
+}
+
+//A static audio render method callback that will be used by the AURenderCallback from the AUGraph
+static OSStatus renderAudioInput(void *inRefCon, AudioUnitRenderActionFlags *actionFlags, const AudioTimeStamp *inTimeStamp, UInt32 inBusNumber, UInt32 inNumberOfFrames, AudioBufferList *ioData)
+{
+    SoundBufferPtr soundBuffer = (SoundBufferPtr)inRefCon;
+    
+    //NSLog(@"numberOfFrames: %d", inNumberOfFrames);
+    
+    //Get the frame to start at and total number of samples
+    UInt32 sample = soundBuffer[inBusNumber].sampleNumber;
+    UInt32 startSample = sample;
+    UInt32 bufferTotalSamples = soundBuffer[inBusNumber].numberOfFrames;
+    
+    //Get a reference to the input data buffer
+    Float32 *inputData = soundBuffer[inBusNumber].data; // audio data buffer
+    
+    //Get references to the channel buffers
+    Float32 *outLeft = (Float32 *)ioData->mBuffers[0].mData; // output audio buffer for Left channel
+    Float32 *outRight = (Float32 *)ioData->mBuffers[1].mData; // output audio buffer for Right channel
+    
+    //Loop thru the number of frames and set the output data from the input data.
+    //Use the left channel for bus 0 (guitar) and right channel for bus 1 (drums) to distiguish for example
+    for (UInt32 i = 0; i < inNumberOfFrames; ++i) {
+        
+        if (inBusNumber == 0) {
+            outLeft[i] = inputData[sample++];
+            outRight[i] = 0;
+        } else {    //inBusNumber == 1
+            outLeft[i] = 0;
+            outRight[i] = inputData[sample++];
+        }
+        
+        //If the sample is beyond the total number of samples in the loop, start over at the beginning
+        if (sample > bufferTotalSamples) {
+            // start over from the beginning of the data, our audio simply loops
+            sample = 0;
+            NSLog(@"Starting over at frame 0 for bus %d", (int)inBusNumber);
+        }
+    }
+    
+    //Set the sample number in the sound buffer struct so we know which frame playback is on
+    soundBuffer[inBusNumber].sampleNumber = sample;
+    
+    performFFT(&inputData[startSample], inNumberOfFrames, soundBuffer, inBusNumber);
+    
+    return noErr;
+}
+
+static void performFFT(float* data, UInt32 numberOfFrames, SoundBufferPtr soundBuffer, UInt32 inBusNumber) {
+
+    int bufferLog2 = round(log2(numberOfFrames));
+    float fftNormFactor = 1.0/( 2 * numberOfFrames);
+    
+    FFTSetup fftSetup = vDSP_create_fftsetup(bufferLog2, kFFTRadix2);
+    
+    int numberOfFramesOver2 = numberOfFrames / 2;
+    float outReal[numberOfFramesOver2];
+    float outImaginary[numberOfFramesOver2];
+    
+    COMPLEX_SPLIT output = { .realp = outReal, .imagp = outImaginary };
+    
+    //Put all of the even numbered elements into outReal and odd numbered into outImaginary
+    vDSP_ctoz((COMPLEX *)data, 2, &output, 1, numberOfFramesOver2);
+    
+    //Perform the FFT via Accelerate
+    //Use FFT forward for standard PCM audio
+    vDSP_fft_zrip(fftSetup, &output, 1, bufferLog2, FFT_FORWARD);
+    
+    //Scale the FFT data
+    vDSP_vsmul(output.realp, 1, &fftNormFactor, output.realp, 1, numberOfFramesOver2);
+    vDSP_vsmul(output.imagp, 1, &fftNormFactor, output.imagp, 1, numberOfFramesOver2);
+    
+    //vDSP_zvmags(&output, 1, soundBuffer[inBusNumber].frequencyData, 1, numberOfFramesOver2);
+    
+    //Take the absolute value of the output to get in range of 0 to 1
+    //vDSP_zvabs(&output, 1, frequencyData, 1, numberOfFramesOver2);
+    vDSP_zvabs(&output, 1, soundBuffer[inBusNumber].frequencyData, 1, numberOfFramesOver2);
+    
+    vDSP_destroy_fftsetup(fftSetup);
 }
 
 @end

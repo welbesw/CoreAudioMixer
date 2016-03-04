@@ -119,4 +119,14 @@
     inputDrumsPlayerNode.volume = value;
 }
 
+-(Float32*)guitarFrequencyDataOfLength:(UInt32*)size {
+    *size = 0;
+    return NULL;
+}
+
+-(Float32*)drumsFrequencyDataOfLength:(UInt32 *)size {
+    *size = 0;
+    return NULL;
+}
+
 @end

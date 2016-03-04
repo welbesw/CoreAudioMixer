@@ -20,4 +20,7 @@
 -(void)setGuitarInputVolume:(Float32)value;
 -(void)setDrumInputVolume:(Float32)value;
 
+-(Float32*)guitarFrequencyDataOfLength:(UInt32*)size;
+-(Float32*)drumsFrequencyDataOfLength:(UInt32*)size;
+
 @end

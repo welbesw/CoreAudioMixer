@@ -20,13 +20,18 @@ class ViewController: UIViewController {
     
     @IBOutlet var segmentedControl:UISegmentedControl!
     
+    @IBOutlet var frequencyView:FrequencyView!
+    
     var drumLevel:Float = 1.0
     var guitarLevel:Float = 1.0
     
     var audioManager:AudioManager!
     
+    var timer:NSTimer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Load the core audio manager and initialize the graph
         
         //Start with the CoreAudioManager as the default
@@ -36,11 +41,29 @@ class ViewController: UIViewController {
         drumSlider.value = drumLevel
         guitarSlider.value = guitarLevel
         updateSliderLabels()
+        
+        timer = NSTimer(timeInterval: 0.1, target: self, selector: "timerTick:", userInfo: nil, repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func timerTick(sender:NSTimer?) {
+        if audioManager.isPlaying() {
+            //Get the frequency data from the audio manager and show on horizontal bar graph
+            var size:UInt32 = 0
+            let frequencyData = audioManager.guitarFrequencyDataOfLength(&size)
+            //let frequencyData = audioManager.drumsFrequencyDataOfLength(&size)
+            let frequencyValuesArray = Array<Float32>(UnsafeBufferPointer(start: UnsafePointer(frequencyData), count: Int(size)))
+            
+            //Sanity check for expected 256 length
+            if frequencyValuesArray.count == 256 {
+                frequencyView.frequncyValues = frequencyValuesArray
+            }
+        }
     }
     
     @IBAction func didChangeSegmentedControlValue(sender:UISegmentedControl?) {
@@ -53,9 +76,11 @@ class ViewController: UIViewController {
             if index == 0 {
                 audioManager = CoreAudioManager()
                 audioManager.load()
+                frequencyView.alpha = 1.0
             } else if (index == 1) {
                 audioManager = AudioEngineManager()
                 audioManager.load()
+                self.frequencyView.alpha = 0.0
             } else {
                 print("Unrecognized selected segment index.")
             }

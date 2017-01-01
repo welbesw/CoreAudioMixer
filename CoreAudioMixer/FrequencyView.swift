@@ -39,12 +39,12 @@ class FrequencyView: UIView {
         //We want to handle the layout of the subviews
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        self.labelView = UILabel(frame: CGRectZero)
+        self.labelView = UILabel(frame: CGRect.zero)
         self.labelView.text = "FFT Frequency Spectrum (Guitar)"
-        self.labelView.textColor = UIColor.darkGrayColor()
-        self.labelView.backgroundColor = UIColor.clearColor()
-        self.labelView.font = UIFont.systemFontOfSize(10.0)
-        self.labelView.textAlignment = NSTextAlignment.Center
+        self.labelView.textColor = UIColor.darkGray
+        self.labelView.backgroundColor = UIColor.clear
+        self.labelView.font = UIFont.systemFont(ofSize: 10.0)
+        self.labelView.textAlignment = NSTextAlignment.center
         self.addSubview(self.labelView)
     }
     
@@ -57,7 +57,7 @@ class FrequencyView: UIView {
     func setupBarViews() {
         //Create 256 bar views to use for the frequency values
         for _ in 0...255 {
-            let view = UIView(frame: CGRectZero)
+            let view = UIView(frame: CGRect.zero)
             view.backgroundColor = self.tintColor
             barViews.append(view)
             self.addSubview(view)
@@ -67,7 +67,7 @@ class FrequencyView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.labelView.frame = CGRectMake(0.0, 0.0, self.frame.size.width, 20.0)
+        self.labelView.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: 20.0)
         
         updateBarFrames()
     }
@@ -76,7 +76,7 @@ class FrequencyView: UIView {
         //Layout the bars based on the updated view frame
         let barWidth = self.frame.size.width / CGFloat(barViews.count)
         
-        for var i = 0; i < barViews.count; ++i {
+        for i in 0 ..< barViews.count {
             let barView = barViews[i]
             
             var barHeight = CGFloat(0)
@@ -85,7 +85,7 @@ class FrequencyView: UIView {
                 barHeight = viewHeight * CGFloat(self.frequncyValues[i]);
             }
             
-            barView.frame = CGRectMake(CGFloat(i) * barWidth, viewHeight - barHeight, barWidth, barHeight);
+            barView.frame = CGRect(x: CGFloat(i) * barWidth, y: viewHeight - barHeight, width: barWidth, height: barHeight);
         }
     }
 }

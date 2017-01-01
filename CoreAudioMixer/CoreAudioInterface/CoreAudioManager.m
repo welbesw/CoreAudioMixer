@@ -8,8 +8,7 @@
 
 #import "CoreAudioManager.h"
 #import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVAudioFormat.h>
-#import <AVFoundation/AVAudioSession.h>
+#import <AVFoundation/AVFoundation.h>
 #import <AudioUnit/AudioUnit.h>
 #include <Accelerate/Accelerate.h>  //Include the Accelerate framework to perform FFT
 

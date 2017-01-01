@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     var audioManager:AudioManager!
     
-    var timer:NSTimer!
+    var timer:Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,8 @@ class ViewController: UIViewController {
         guitarSlider.value = guitarLevel
         updateSliderLabels()
         
-        timer = NSTimer(timeInterval: 0.01, target: self, selector: "timerTick:", userInfo: nil, repeats: true)
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        timer = Timer(timeInterval: 0.01, target: self, selector: #selector(ViewController.timerTick(_:)), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,11 +51,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func timerTick(sender:NSTimer?) {
+    func timerTick(_ sender:Timer?) {
         if audioManager.isPlaying() {
             //Get the frequency data from the audio manager and show on horizontal bar graph
             var size:UInt32 = 0
-            let frequencyData = audioManager.guitarFrequencyDataOfLength(&size)
+            let frequencyData = audioManager.guitarFrequencyData(ofLength: &size)
             //let frequencyData = audioManager.drumsFrequencyDataOfLength(&size)
             let frequencyValuesArray = Array<Float32>(UnsafeBufferPointer(start: UnsafePointer(frequencyData), count: Int(size)))
             
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func didChangeSegmentedControlValue(sender:UISegmentedControl?) {
+    @IBAction func didChangeSegmentedControlValue(_ sender:UISegmentedControl?) {
         if sender == segmentedControl {
             //Stop any audio before changing managers
             audioManager.stopPlaying()
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func didTapPlayButton(sender:AnyObject?) {
+    @IBAction func didTapPlayButton(_ sender:AnyObject?) {
         
         if(audioManager.isPlaying()) {
             audioManager.stopPlaying()
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         updatePlayButtonText()
     }
     
-    @IBAction func didChangeSliderValue(sender:UISlider?) {
+    @IBAction func didChangeSliderValue(_ sender:UISlider?) {
         if sender == drumSlider {
             drumLevel = drumSlider.value
             audioManager.setDrumInputVolume(drumLevel)
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     func updatePlayButtonText() {
         let buttonText = audioManager.isPlaying() ? "Stop" : "Play"
         UIView.performWithoutAnimation { () -> Void in
-            self.playButton.setTitle(buttonText, forState: UIControlState.Normal)
+            self.playButton.setTitle(buttonText, for: UIControlState())
             self.playButton.layoutIfNeeded()
         }
     }

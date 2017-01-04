@@ -160,6 +160,7 @@
 				TargetAttributes = {
 					BECD88FE1C7E353700AD9D96 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = T9FJ9CRG8J;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -326,6 +327,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T9FJ9CRG8J;
 				INFOPLIST_FILE = CoreAudioMixer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.williamwelbes.CoreAudioMixer;
@@ -341,6 +343,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T9FJ9CRG8J;
 				INFOPLIST_FILE = CoreAudioMixer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.williamwelbes.CoreAudioMixer;

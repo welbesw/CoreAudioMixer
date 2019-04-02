@@ -1,6 +1,6 @@
 # CoreAudioMixer
 
-##An Investigation into CoreAudio##
+## An Investigation into CoreAudio
 
 I've implemented this app as part of my investigation into the CoreAudio frameworks on iOS.  It uses two different audio files, one with drums and one with guitar and mixes them together.   
 
@@ -8,7 +8,7 @@ There are two different implementations of interfacing with CoreAudio. First wit
 
 For more about CoreAudio, visit the iOS [CoreAudio Apple Developer Library](https://developer.apple.com/library/ios/documentation/MusicAudio/Conceptual/CoreAudioOverview/CoreAudioEssentials/CoreAudioEssentials.html).
 
-##User Interface##
+## User Interface
 
 ![Mixer Screen Shot](/images/mixer-screen-shot-1.png)
 
@@ -16,7 +16,7 @@ The interface for the app is simple.  Select an implementation type via the segm
 
 I've also added a frequency spectrum view into the interface that shows the frequency information in real time for the Guitar track as it plays.  This view simply uses UIViews as columns to represent the data.  For a more robust view an OpenGL view could be explored in the future.  The FFT is only performed in the CoreAudioManager that implements the AUGraph, so it is not displayed when the AVAudioEngine implementation is selected in the UI.
 
-##Source##
+## Source
 
 The implementation of CoreAudio calls is contained in two separate manager classes: CoreAudioManager and AudioEngineManager.  
 

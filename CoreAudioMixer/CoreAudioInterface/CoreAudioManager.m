@@ -435,28 +435,35 @@ static void performFFT(float* data, UInt32 numberOfFrames, SoundBufferPtr soundB
     
     FFTSetup fftSetup = vDSP_create_fftsetup(bufferLog2, kFFTRadix2);
     
-    int numberOfFramesOver2 = numberOfFrames / 2;
-    float outReal[numberOfFramesOver2];
-    float outImaginary[numberOfFramesOver2];
+    int length = numberOfFrames;
+    
+    float outReal[length];
+    float outImaginary[length];
+    
+    //Initialize arrays to all zeros
+    for (int i =0 ;i < length; ++i) {
+        outReal[i] = 0;
+        outImaginary[i] = 0;
+    }
     
     COMPLEX_SPLIT output = { .realp = outReal, .imagp = outImaginary };
     
     //Put all of the even numbered elements into outReal and odd numbered into outImaginary
-    vDSP_ctoz((COMPLEX *)data, 2, &output, 1, numberOfFramesOver2);
+    vDSP_ctoz((COMPLEX *)data, 2, &output, 1, length);
     
     //Perform the FFT via Accelerate
     //Use FFT forward for standard PCM audio
     vDSP_fft_zrip(fftSetup, &output, 1, bufferLog2, FFT_FORWARD);
     
     //Scale the FFT data
-    vDSP_vsmul(output.realp, 1, &fftNormFactor, output.realp, 1, numberOfFramesOver2);
-    vDSP_vsmul(output.imagp, 1, &fftNormFactor, output.imagp, 1, numberOfFramesOver2);
+    vDSP_vsmul(output.realp, 1, &fftNormFactor, output.realp, 1, length);
+    vDSP_vsmul(output.imagp, 1, &fftNormFactor, output.imagp, 1, length);
     
     //vDSP_zvmags(&output, 1, soundBuffer[inBusNumber].frequencyData, 1, numberOfFramesOver2);
     
     //Take the absolute value of the output to get in range of 0 to 1
     //vDSP_zvabs(&output, 1, frequencyData, 1, numberOfFramesOver2);
-    vDSP_zvabs(&output, 1, soundBuffer[inBusNumber].frequencyData, 1, numberOfFramesOver2);
+    vDSP_zvabs(&output, 1, soundBuffer[inBusNumber].frequencyData, 1, length);
     
     vDSP_destroy_fftsetup(fftSetup);
 }

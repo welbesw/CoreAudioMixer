@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         updateSliderLabels()
         
         timer = Timer(timeInterval: 0.01, target: self, selector: #selector(ViewController.timerTick(_:)), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func timerTick(_ sender:Timer?) {
+    @objc func timerTick(_ sender:Timer?) {
         if audioManager.isPlaying() {
             //Get the frequency data from the audio manager and show on horizontal bar graph
             var size:UInt32 = 0
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
     func updatePlayButtonText() {
         let buttonText = audioManager.isPlaying() ? "Stop" : "Play"
         UIView.performWithoutAnimation { () -> Void in
-            self.playButton.setTitle(buttonText, for: UIControlState())
+            self.playButton.setTitle(buttonText, for: UIControl.State())
             self.playButton.layoutIfNeeded()
         }
     }

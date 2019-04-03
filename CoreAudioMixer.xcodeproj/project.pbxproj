@@ -161,7 +161,7 @@
 					BECD88FE1C7E353700AD9D96 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = T9FJ9CRG8J;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -352,8 +352,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CoreAudioMixer/CoreAudioInterface/CoreAudioMixer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -368,8 +367,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.williamwelbes.CoreAudioMixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CoreAudioMixer/CoreAudioInterface/CoreAudioMixer-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

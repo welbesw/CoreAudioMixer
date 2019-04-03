@@ -80,7 +80,7 @@ class ViewController: UIViewController {
             } else if (index == 1) {
                 audioManager = AudioEngineManager()
                 audioManager.load()
-                self.frequencyView.alpha = 0.0
+                frequencyView.alpha = 0.0
             } else {
                 print("Unrecognized selected segment index.")
             }
